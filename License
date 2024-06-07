@@ -1,5 +1,6 @@
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+LICENSE: Add a license to your project. For open-source projects, the MIT License is a good choice. Create a LICENSE file with the following content:
 MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,3 +20,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+.gitignore: Make sure to include a .gitignore file to exclude files that should not be in the repository (e.g., environment files, vendor folders). Here's a basic example:
+/vendor
+/.env
+/database
+*.log
+*.tmp
+
+
+Commit and Push: Once you have all your files set up, commit your changes and push to your GitHub repository.
+git add .
+git commit -m "Initial commit - HomeStay Reservation System"
+git push origin main
