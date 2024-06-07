@@ -1,207 +1,170 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HomeStay Hub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+include 'connect.php';
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-    <link rel="stylesheet" href="css/fancybox.min.css">
+$username = $password = $role = "";
+$username_err = $password_err = $role_err = "";
+
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if username is empty
+    if (empty(trim($_POST["username"]))) {
+        $username_err = "Please enter your username.";
+    } else {
+        $username = trim($_POST["username"]);
+    }
     
-    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+    // Check if password is empty
+    if (empty(trim($_POST["password"]))) {
+        $password_err = "Please enter your password.";
+    } else {
+        $password = trim($_POST["password"]);
+    }
 
-    <!-- Theme Style -->
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
+    // Check if role is selected
+    if (empty($_POST["role"])) {
+        $role_err = "Please select your role.";
+    } else {
+        $role = $_POST["role"];
+    }
     
-    <?php include_once("header.php") ?>
-    <!-- END head -->
-
-    <section class="site-hero overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row site-hero-inner justify-content-center align-items-center">
-          <div class="col-md-10 text-center" data-aos="fade-up">
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To <span class="fa fa-star text-primary"></span>HomeStay Hub<span class="fa fa-star text-primary"></span></span>
-            <h1 class="heading">Stay With Us, Feel At Home</h1>
-          </div>
-        </div>
-      </div>
-
-      <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-          <span class="mouse-wheel"></span>
-        </div>
-      </a>
-    </section>
-    <!-- END section -->
-
-    <section class="section bg-light pb-0"  >
-      <div class="container">
-       
-        <div class="row check-availabilty" id="next">
-          
-
-
-        </div>
-      </div>
-    </section>
-
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
-            <figure class="img-absolute">
-              <img src="images/food-1.jpg" alt="Image" class="img-fluid">
-            </figure>
-            <img src="images/img_1.jpg" alt="Image" class="img-fluid rounded">
-          </div>
-          <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-            <h2 class="heading">Welcome </h2>
-            <p class="mb-4">Step into comfort and hospitality at HomeStay Hub. Located in India , our homestay offers a cozy retreat for your stay. Experience genuine hospitality, personalized service, and memorable moments. Explore our website and book your stay today!</p>
-            <p><a href="about.php" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span class="mr-3 font-family-serif"><em>or</em></span> <a href="https://vimeo.com/channels/staffpicks/93951774"  data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Rooms &amp; Suites</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Experience comfort and elegance in every corner of our homestay at HomeStay Hub . Each room and suite is meticulously decorated to create a welcoming atmosphere for our guests.<br></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_1.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">&#x20B9;  3000 / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_2.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Family Room</h2>
-                <span class="text-uppercase letter-spacing-1">&#x20B9; 5000 / per night</span>
-              </div>
-            </a>
-          </div>
-
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="#" class="room">
-              <figure class="img-wrap">
-                <img src="images/img_3.jpg" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-              <div class="p-3 text-center room-info">
-                <h2>Presidential Room</h2>
-                <span class="text-uppercase letter-spacing-1">&#x20B9; 7500 / per night</span>
-              </div>
-            </a>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-    
-    
-    <section class="section slider-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade-up">Gallery</h2>
-            <p data-aos="fade-up" data-aos-delay="100">Welcome to Homestay Hub's gallery! Explore snapshots of our cozy accommodations, inviting facilities, and beautiful surroundings. Get a glimpse of the experiences that await you during your stay with us. Start envisioning your memorable getaway today!
-
-</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="home-slider major-caousel owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-              <div class="slider-item">
-                <a href="images/slider-1.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-1.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-2.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-2.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-3.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-3.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-4.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-4.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-5.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-5.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-6.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-6.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-              <div class="slider-item">
-                <a href="images/slider-7.jpg" data-fancybox="images" data-caption="Caption for this image"><img src="images/slider-7.jpg" alt="Image placeholder" class="img-fluid"></a>
-              </div>
-            </div>
-            <!-- END slider -->
-          </div>
+    // Validate credentials
+    if (empty($username_err) && empty($password_err) && empty($role_err)) {
+        // Prepare the SQL statement based on the role
+        if ($role == 'admin') {
+            $sql = "SELECT admin_id, username, password FROM admins WHERE username = ?";
+        } else {
+            $sql = "SELECT user_id, username, password FROM users WHERE username = ?";
+        }
         
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("s", $username);
+            if ($stmt->execute()) {
+                $stmt->store_result();
+
+                // Check if username exists, if yes then verify password
+                if ($stmt->num_rows == 1) {
+                    $stmt->bind_result($id, $username, $hashed_password);
+                    $stmt->fetch();
+                    if (password_verify($password, $hashed_password)) {
+                        // Password is correct, so start a new session
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["user_id"] = $id;
+                        $_SESSION["username"] = $username;
+                        $_SESSION["role"] = $role;
+
+                        // Redirect user based on role
+                        if ($role == 'admin') {
+                            header("location: ../admin.php");
+                        } else {
+                            header("location: ../profile.php");
+                        }
+                        exit;
+                    } else {
+                        // Display an error message if password is not valid
+                        $password_err = "Invalid password.";
+                    }
+                } else {
+                    // Display an error message if username doesn't exist
+                    $username_err = "No account found with that username.";
+                }
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            $stmt->close();
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
+        }
+    }
+
+    // Close connection
+    $conn->close();
+}
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Login Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Login</h2>
+            </div>
         </div>
-      </div>
-    </section>
-    <!-- END section -->
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-      <div class="container" >
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">Stay With Us, Feel At Home.<br> Reserve Now!</h2>
-          </div>
-          <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-          </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url(images/bg-1.jpg);"></div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign In</h3>
+                            </div>
+                            <div class="w-100">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="signin-form">
+                            <div class="form-group mb-3">
+                                <label class="label" for="username">Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter Your Username" value="<?php echo htmlspecialchars($username); ?>" required>
+                                <span class="error"><?php echo $username_err; ?></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Enter Your Password" required>
+                                <span class="error"><?php echo $password_err; ?></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="role">Role</label>
+                                <select class="form-control" name="role" required>
+                                    <option value="user" <?php echo ($role == 'user') ? 'selected' : ''; ?>>User</option>
+                                    <option value="admin" <?php echo ($role == 'admin') ? 'selected' : ''; ?>>Admin</option>
+                                </select>
+                                <span class="error"><?php echo $role_err; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50 text-left">
+                                    <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="w-50 text-md-right">
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="text-center">Not a member? <a href="signup.php">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>  
-    <?php include_once("footer.php") ?>
+    </div>
+</section>
 
-   
-    
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/jquery.fancybox.min.js"></script>
-    
-    
-    <script src="js/aos.js"></script>
-    
-    <script src="js/bootstrap-datepicker.js"></script> 
-    <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
-    <script src="js/main.js"></script>
-  </body>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>
